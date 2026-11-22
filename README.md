@@ -20,6 +20,18 @@ npm run preview
 
 Run the domain tests with `npm test`. The app uses a system font stack and does not need a font or image CDN to render.
 
+## Deploy to Cloudflare Workers Static Assets
+
+This project uses Wrangler's explicit static-assets mode. The root `wrangler.jsonc` publishes the Vite `dist` directory and serves `index.html` for unmatched routes, so the React single-page app can handle its client-side routes. No Worker entry script, API, database, Cloudflare Vite plugin, or Vite upgrade is needed.
+
+```bash
+npm ci
+npm run build
+npx wrangler deploy
+```
+
+On a new machine, sign in first with `npx wrangler login`. Wrangler prints the deployed `workers.dev` URL when deployment succeeds. The configuration and route behavior are described in [Cloudflare's Static Assets documentation](https://developers.cloudflare.com/workers/static-assets/). For local preparation, use `npx wrangler deploy --dry-run` after building.
+
 ## Demonstration data and limits
 
 - Seeded examples make the features explorable without an account. The role switcher exposes Resident, Collector, Recycler/Buyer, and Operator demonstration views.
