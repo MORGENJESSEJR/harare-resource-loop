@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.test-dist/
+*.tsbuildinfo
+.wrangler/
+.vercel/
+.netlify/
+/.env
+/.env.*
+!/.env.example
