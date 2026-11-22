@@ -32,6 +32,8 @@ npx wrangler deploy
 
 On a new machine, sign in first with `npx wrangler login`. Wrangler prints the deployed `workers.dev` URL when deployment succeeds. The configuration and route behavior are described in [Cloudflare's Static Assets documentation](https://developers.cloudflare.com/workers/static-assets/). For local preparation, use `npx wrangler deploy --dry-run` after building.
 
+For automatic deployment from GitHub, connect the repository through [Cloudflare Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/), select `main` and `/`, set the build command to `npm run build`, and set the deploy command to `npx wrangler deploy`.
+
 ## Demonstration data and limits
 
 - Seeded examples make the features explorable without an account. The role switcher exposes Resident, Collector, Recycler/Buyer, and Operator demonstration views.
