@@ -23,13 +23,13 @@ If the project already has a Git remote, keep that repository and push to its in
 This project uses an explicit `wrangler.jsonc` configuration instead of Wrangler's Vite auto-configuration. It deploys only the built `dist` files; there is no Worker entry point, API, database, or Cloudflare Vite plugin.
 
 1. Connect the GitHub repository through Cloudflare **Workers Builds** and select `main` as the production branch. Allow Cloudflare to install its GitHub application for this repository when prompted.
-2. Set the project root to `/`.
-3. Use `npm ci && npm run build && npx wrangler deploy` as the build/deploy command. The Wrangler publish command is `npx wrangler deploy`.
+2. Set the project root to `/` and the build command to `npm run build`.
+3. Set the deploy command to `npx wrangler deploy`. Workers Builds installs dependencies from `package.json` and uses the locally locked Wrangler version.
 4. Wrangler reads `./dist` from `wrangler.jsonc`, with `not_found_handling` set to `single-page-application`.
 5. For local manual deployment, run `npm ci`, `npm run build`, then `npx wrangler deploy`. On a new machine, authenticate with `npx wrangler login` first.
 6. After a successful deployment, use the `workers.dev` URL shown by Cloudflare. Open it over HTTPS on another device.
 
-The Vite build uses relative asset paths. The React app uses hash routes such as `/#community`; Cloudflare's SPA fallback also serves `index.html` when a path does not match a static asset. See [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/) and [SPA routing](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/).
+The Vite build uses relative asset paths. The React app uses hash routes such as `/#community`; Cloudflare's SPA fallback also serves `index.html` when a path does not match a static asset. See [Cloudflare Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/), [Static Assets](https://developers.cloudflare.com/workers/static-assets/), and [SPA routing](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/).
 
 ## Vercel alternative
 
